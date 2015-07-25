@@ -17,6 +17,15 @@
         <input type="checkbox" ng-model="movie.OrdPaid" class="form-control" id="orderpaid" placeholder=""/>
     </div>
 </div>
+<div class="form-group">
+        <table>
+    <tr><td colspan="2"><h3>Details</h3></td></tr>
+    <tr ng-repeat="deet in movie.details">
+      <td>{{ deet.product.ProductName }} {{ deet.subproduct.Flavor }} {{ deet.subproduct.Size }} {{ deet.subproduct.Type }} {{ deet.subproduct.SubProductMemo }}</td>
+        <td>{{ deet.MemoOrderDetails }}</td>
+</tr>
+</table>
+</div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

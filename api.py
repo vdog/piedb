@@ -74,6 +74,8 @@ class Orders(Base):
         ret['shipper'] = serialize(self.shipper)
     if isinstance(self.customer, Customer):
         ret['customer'] = serialize(self.customer)
+    else:
+         ret['customer'] = serialize(Customer())
     ret['details'] = []
     for d in self.details:
       ret['details'].append(d.serialize())
@@ -162,7 +164,10 @@ def get_orders():
 def get_customers():
     searchTerm = request.args.get('search','')
     offset = request.args.get('offset',0)
+    limit = request.args.get('limit',0)
     customers = db.query(Customer).filter(or_(Customer.CustomerID.like('%' + searchTerm + '%'), or_(Customer.CustomerFirstname.like('%' + searchTerm + '%'), Customer.CompanyName.like('%' + searchTerm + '%')))).offset(offset).limit(10)
+    if limit == 1:
+            return json.dumps(serialize(customers[0]))
     return json.dumps([serialize(customer) for customer in customers])
 
 @app.route("/customers/<customerID>")
@@ -220,11 +225,13 @@ def upsert_order():
         order.ShipRegion = incoming['ShipRegion']
         order.ShipPostalCode = incoming['ShipPostalCode']
         order.OrdPaid = incoming['OrdPaid']
+        order.CustomerID = incoming['CustomerID']
     db.commit()
     return json.dumps(incoming)
 
 @app.before_request
 def before_request():
+  print("before_request handler")
   pass
 
 

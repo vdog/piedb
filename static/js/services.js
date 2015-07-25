@@ -14,6 +14,8 @@ angular.module('movieApp.services',[]).factory('Movie',function($resource){
           method: 'PUT'
         }
     });
+//}).factory('Product', function($resource){
+//     return $resource('/products
 }).service('popupService',function($window){
     this.showPopup=function(message){
         return $window.confirm(message);

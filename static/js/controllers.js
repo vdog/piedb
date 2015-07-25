@@ -37,7 +37,7 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
             $state.go('movies');
         });
     }
-}).controller('MovieEditController',function($scope,$state,$stateParams,Movie){
+}).controller('MovieEditController',function($scope,$state,$stateParams,Movie, Customer){
 
     $scope.updateMovie=function(){
         $scope.movie.$update(function(){
@@ -56,10 +56,17 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
         console.log('loadMovie');
     };
 
+    $scope.queryChanged = function(){
+      Customer.query({search: $scope.movie.CustomerID, limit: 1}, function(data){
+          $scope.movie.customer = data[0];
+          $scope.movie.CustomerID = $scope.movie.customer.CustomerID;
+          console.log($scope.movie.CustomerID);
+          console.log(data);
+      });
+    }
+
+    $scope.movie=Movie.get({id:$stateParams.id});
     $scope.loadMovie();
-    console.log($stateParams.cID);
-    console.log($stateParams.id);
-    $scope.movie.CustomerID = $stateParams.cID;
 
 }).controller('OutlookListController',function($scope, $state, $stateParams, Movie){
     $scope.movies=Movie.query({startDate: '2014-10-09T00:00:00', endDate: '2014-10-17T00:00:00'});

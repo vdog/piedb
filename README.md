@@ -6,4 +6,10 @@ cd piedb
 virtualenv venv
 source venv/bin/activate
 pip install sqlalchemy flask python-dateutil
+python api.py
 ```
+
+Setup the database.
+Point a browser at http://localhost:5000/static/index.html
+
+Run the `deactivate` command to leave the virtial env.

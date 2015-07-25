@@ -17,7 +17,7 @@ db = Session(engine)
 
 def date_handler(obj):
     if hasattr(obj, 'isoformat'):
-        print obj.isoformat()
+        print(obj.isoformat())
         return obj.isoformat()
     else:
         return obj
@@ -67,7 +67,7 @@ class Orders(Base):
 
   def serialize(self):
     ret = serialize(self)
-    print self.employee.__class__
+    print(self.employee.__class__)
     if isinstance(self.employee, Employee):
         ret['employee'] = serialize(self.employee)
     if isinstance(self.shipper, Shippers):
@@ -190,7 +190,7 @@ def get_employees():
 @app.route("/orders", methods=['POST','PUT'])
 def upsert_order():
     incoming = request.get_json()
-    print incoming
+    print(incoming)
     if 'OrderID' not in incoming:
         order = Orders();
         #order.ShipAddress = incoming['ShipAddress']
@@ -204,7 +204,7 @@ def upsert_order():
         db.commit()
     else:
         order = db.query(Orders).get(incoming['OrderID'])
-        print json.dumps(order.serialize())
+        print(json.dumps(order.serialize()))
         #order.ShipCountry = 'UAE'
         #db.commit()
         #for key in incoming:

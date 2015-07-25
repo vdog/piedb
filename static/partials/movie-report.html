@@ -1,0 +1,19 @@
+
+<table class="table">
+  <tr>
+    <td>Search on PickUp Date</td>
+    <td>Start Date: <input type="text" id="startDate" ></td>
+    <td>&nbsp;</td>
+    <td>End Date: <input type="text" id="endDate" ></td>
+  </tr>
+</table>
+<div ng-repeat="movie in movies" class="orderList">
+  <h3>{{movie.customer.CompanyName}}, {{movie.customer.CustomerFirstname}}</h3>
+  <p> {{movie.RequiredDate | date:'M/d/yy'}} {{movie.PickUpTime | date:'HH:mm'}}</p>
+  <div ng-repeat="deet in movie.details" class="deet"> 
+    <p>{{ deet.product.ProductName }} {{ deet.subproduct.Flavor }} {{ deet.subproduct.Size }} {{ deet.subproduct.Type }} {{ deet.subproduct.SubProductMemo }}</p>
+    <p>{{ deet.MemoOrderDetails }}</p>
+  </div>
+</div>
+
+

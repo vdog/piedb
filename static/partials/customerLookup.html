@@ -1,0 +1,17 @@
+Search for Phone number, First Name, or Last Name: <input ng-model='search' ng-change="queryChanged()">
+<table class="table movietable">
+    <tr>
+        <td><h3>First Name</h3></td>
+        <td><h3>Last Name</h3></td>
+        <td><h3>Phone Number</h3></td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="movie in movies">
+        <td>{{movie.CustomerFirstname}}</td>
+        <td>{{movie.CompanyName}}</td>
+        <td>{{movie.CustomerID}}</td>
+        <td><a class='btn btn-primary' ui-sref="viewCustomer({id:movie.CustomerID})">Orders</a></td>
+    </tr>
+</table>
+<a class='btn btn-primary' ng-click='prevPage()'>&lt;&lt;Previous Page</a>
+<a class='btn btn-primary' ng-click='nextPage()'>Next Page&gt;&gt;</a>

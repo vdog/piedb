@@ -1,0 +1,45 @@
+/**
+ * Created by Sandeep on 01/06/14.
+ */
+
+angular.module('movieApp',['ui.router','ngResource','movieApp.controllers','movieApp.services']);
+
+angular.module('movieApp').config(function($stateProvider,$httpProvider){
+    $stateProvider.state('movies',{
+        url:'/orders?orderBy&offset',
+        templateUrl:'/static/movieApp/partials/movies.html',
+        controller:'MovieListController'
+    }).state('viewMovie',{
+       url:'/orders/:id',
+       templateUrl:'/static/movieApp/partials/movie-view.html',
+       controller:'MovieViewController'
+    }).state('newMovie',{
+        url:'/orders/new',
+        templateUrl:'/static/movieApp/partials/movie-add.html',
+        controller:'MovieCreateController'
+    }).state('editMovie',{
+        url:'/orders/:id/edit?cID',
+        templateUrl:'/static/movieApp/partials/movie-edit.html',
+        controller:'MovieEditController'
+    }).state('outlook',{
+        url:'/7dayoutlook',
+        templateUrl:'/static/movieApp/partials/outlook.html',
+        controller:'OutlookListController'
+    }).state('customerSearch',{
+        url:'/customers?search',
+        templateUrl:'/static/movieApp/partials/customerLookup.html',
+        controller:'CustomerLookupController'
+    }).state('viewCustomer',{
+        url:'/customers/:id',
+        templateUrl:'/static/movieApp/partials/customer-view.html',
+        controller:'CustomerViewController'
+    }).state('editCustomer',{
+    }).state('newCustomer',{
+    }).state('reports',{
+        url:'/reports',
+        templateUrl:'/static/movieApp/partials/movie-report.html',
+        controller:'OrderReportsController'
+    });
+}).run(function($state){
+   $state.go('movies');
+});

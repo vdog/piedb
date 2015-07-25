@@ -7,37 +7,37 @@ angular.module('movieApp',['ui.router','ngResource','movieApp.controllers','movi
 angular.module('movieApp').config(function($stateProvider,$httpProvider){
     $stateProvider.state('movies',{
         url:'/orders?orderBy&offset',
-        templateUrl:'/static/movieApp/partials/movies.html',
+        templateUrl:'/static/partials/movies.html',
         controller:'MovieListController'
     }).state('viewMovie',{
        url:'/orders/:id',
-       templateUrl:'/static/movieApp/partials/movie-view.html',
+       templateUrl:'/static/partials/movie-view.html',
        controller:'MovieViewController'
     }).state('newMovie',{
         url:'/orders/new',
-        templateUrl:'/static/movieApp/partials/movie-add.html',
+        templateUrl:'/static/partials/movie-add.html',
         controller:'MovieCreateController'
     }).state('editMovie',{
         url:'/orders/:id/edit?cID',
-        templateUrl:'/static/movieApp/partials/movie-edit.html',
+        templateUrl:'/static/partials/movie-edit.html',
         controller:'MovieEditController'
     }).state('outlook',{
         url:'/7dayoutlook',
-        templateUrl:'/static/movieApp/partials/outlook.html',
+        templateUrl:'/static/partials/outlook.html',
         controller:'OutlookListController'
     }).state('customerSearch',{
         url:'/customers?search',
-        templateUrl:'/static/movieApp/partials/customerLookup.html',
+        templateUrl:'/static/partials/customerLookup.html',
         controller:'CustomerLookupController'
     }).state('viewCustomer',{
         url:'/customers/:id',
-        templateUrl:'/static/movieApp/partials/customer-view.html',
+        templateUrl:'/static/partials/customer-view.html',
         controller:'CustomerViewController'
     }).state('editCustomer',{
     }).state('newCustomer',{
     }).state('reports',{
         url:'/reports',
-        templateUrl:'/static/movieApp/partials/movie-report.html',
+        templateUrl:'/static/partials/movie-report.html',
         controller:'OrderReportsController'
     });
 }).run(function($state){

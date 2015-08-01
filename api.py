@@ -181,7 +181,7 @@ def get_order(orderID):
     order = db.query(Orders).filter(Orders.OrderID == orderID)
     return json.dumps(order.all()[0].serialize())
 
-@app.route("/orders/new")
+@app.route("/orders/-1")
 def get_new_order():
     order = Orders();
     order.OrderID = -1
@@ -191,6 +191,21 @@ def get_new_order():
 def get_employees():
   employees = db.query(Employee)
   return json.dumps([serialize(employee) for employee in employees])
+
+@app.route("/subproducts/<int:productID>")
+def get_subproducts(productID):
+  subproducts = db.query(Prod_SubProd).filter(Prod_SubProd.ProductID == productID)
+  return json.dumps([serialize(sub) for sub in subproducts])
+
+@app.route("/products")
+def get_products():
+  products = db.query(Product)
+  return json.dumps([serialize(product) for product in products])
+
+@app.route("/orderdetail")
+def new_detail():
+   detail = OrderDetails()
+   return json.dumps(serialize(detail))
 
 @app.route("/orders", methods=['POST','PUT'])
 def upsert_order():

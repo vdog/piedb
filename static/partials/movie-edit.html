@@ -34,10 +34,11 @@
         <table>
     <tr><td colspan="2"><h3>Details</h3></td></tr>
     <tr ng-repeat="deet in movie.details">
-      <td>{{ deet.product.ProductName }} {{ deet.subproduct.Flavor }} {{ deet.subproduct.Size }} {{ deet.subproduct.Type }} {{ deet.subproduct.SubProductMemo }}</td>
-        <td>{{ deet.MemoOrderDetails }}</td>
+            <td><select ng-model="deet.product.ProductID"><option ng-repeat="prod in products" value="prod.ProductID">{{ prod.ProductName }}</option> {{ deet.subproduct.Flavor }} {{ deet.subproduct.Size }} {{ deet.subproduct.Type }} {{ deet.subproduct.SubProductMemo }}</td>
+      <td><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></td>
 </tr>
 </table>
+        <input type="button" class="btn btn-primary" value="Add" ng-click="addDeet();"/>
 </div>
 
 <div class="form-group">

@@ -37,7 +37,7 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
             $state.go('movies');
         });
     }
-}).controller('MovieEditController',function($scope,$state,$stateParams,Movie, Customer){
+}).controller('MovieEditController',function($scope,$state,$stateParams,Movie, Customer, Product, SubProducts, OrderDetail){
 
     $scope.updateMovie=function(){
         $scope.movie.$update(function(){
@@ -46,7 +46,13 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
     };
 
     $scope.loadMovie=function(){
-        $scope.movie=Movie.get({id:$stateParams.id});
+        Movie.get({id:$stateParams.id}, function(data){
+                $scope.movie = data;
+        });
+    Product.query({}, function(data){
+            console.log(data)
+            $scope.products = data[0]
+    });
         $( "#pickUpDate" ).datepicker({
           dateFormat: 'yy-mm-ddT00:00:00',
           onClose:function(){
@@ -65,7 +71,13 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
       });
     }
 
-    $scope.movie=Movie.get({id:$stateParams.id});
+    $scope.addDeet = function(){
+            OrderDetail.get({}, function(data){
+              $scope.movie.details.push(data);
+            });
+
+    }
+
     $scope.loadMovie();
 
 }).controller('OutlookListController',function($scope, $state, $stateParams, Movie){

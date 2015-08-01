@@ -14,8 +14,15 @@ angular.module('movieApp.services',[]).factory('Movie',function($resource){
           method: 'PUT'
         }
     });
-//}).factory('Product', function($resource){
-//     return $resource('/products
+}).factory('Product', function($resource){
+     return $resource('/products', {}, {});
+}).factory('OrderDetail', function($resource){
+        return $resource('/orderdetail', {},{
+
+        });
+}).factory('SubProducts', function($resource){
+        return $resource('/subprocuts/:id', {id: '@_id'},{
+        });
 }).service('popupService',function($window){
     this.showPopup=function(message){
         return $window.confirm(message);

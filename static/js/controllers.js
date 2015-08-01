@@ -77,7 +77,7 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
     $scope.updateProduct = function(id){
              SubProducts.query({productID: id}, function(data){
               $scope.subs = data
-             }
+             })
     }
 
     Product.query({}, function(data){

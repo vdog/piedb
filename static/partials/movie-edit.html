@@ -34,7 +34,7 @@
         <table>
     <tr><td colspan="2"><h3>Details</h3></td></tr>
     <tr ng-repeat="deet in movie.details">
-            <td><select ng-model="deet.product.ProductID"><option ng-repeat="prod in products" value="{{ prod.ProductID }}">{{ prod.ProductName }}</option></select><select ng-model="deet.product.OrdDetSubProductID"><option ng-repeat="sub in subs" value="{{ sub.SubProductID }}">{{ sub.Flavor }} {{ sub.Size }} {{ sub.Type }} {{ sub.SubProductMemo }}</option></select></td>
+            <td><select ng-model="deet.product.ProductID"><option ng-repeat="prod in products" value="{{ prod.ProductID }}">{{ prod.ProductName }}</option></select></td>
       <td><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></td>
 </tr>
 </table>

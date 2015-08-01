@@ -49,10 +49,6 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
         Movie.get({id:$stateParams.id}, function(data){
                 $scope.movie = data;
         });
-    Product.query({}, function(data){
-            console.log(data)
-            $scope.products = data[0]
-    });
         $( "#pickUpDate" ).datepicker({
           dateFormat: 'yy-mm-ddT00:00:00',
           onClose:function(){
@@ -77,6 +73,23 @@ angular.module('movieApp.controllers',[]).controller('MovieListController',funct
             });
 
     }
+
+    $scope.updateProduct = function(id){
+             SubProducts.query({productID: id}, function(data){
+              $scope.subs = data
+             }
+    }
+
+    Product.query({}, function(data){
+            //console.log(data)
+            $scope.products = data
+            //console.log($scope.products)
+    });
+    SubProducts.query({}, function(data){
+            //console.log(data)
+            $scope.subs = data
+            //console.log($scope.products)
+    });
 
     $scope.loadMovie();
 

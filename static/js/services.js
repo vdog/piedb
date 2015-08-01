@@ -21,7 +21,7 @@ angular.module('movieApp.services',[]).factory('Movie',function($resource){
 
         });
 }).factory('SubProducts', function($resource){
-        return $resource('/subprocuts/:id', {id: '@_id'},{
+        return $resource('/subproducts/:id', {id: '@_id'},{
         });
 }).service('popupService',function($window){
     this.showPopup=function(message){

@@ -175,7 +175,6 @@ def get_customer_orders(customerID):
   orders = db.query(Orders).filter(Orders.CustomerID == customerID).order_by(desc(Orders.OrderDate))
   return json.dumps([order.serialize() for order in orders.all()])
 
-
 @app.route("/orders/<int:orderID>")
 def get_order(orderID):
     order = db.query(Orders).filter(Orders.OrderID == orderID)
@@ -192,9 +191,13 @@ def get_employees():
   employees = db.query(Employee)
   return json.dumps([serialize(employee) for employee in employees])
 
-@app.route("/subproducts/<int:productID>")
-def get_subproducts(productID):
-  subproducts = db.query(Prod_SubProd).filter(Prod_SubProd.ProductID == productID)
+@app.route("/subproducts")
+def get_subproducts():
+  productID = request.args.get('productID','NONE')
+  if productID != 'NONE':
+    subproducts = db.query(Prod_SubProd).filter(Prod_SubProd.ProductID == productID)
+  else:
+    subproducts = db.query(Prod_SubProd)
   return json.dumps([serialize(sub) for sub in subproducts])
 
 @app.route("/products")

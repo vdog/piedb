@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="movieApp">
+<html data-ng-app="orderApp">
 <head lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,10 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a ui-sref="movies({orderBy: 'OrderDate'})">Orders</a></li>
+                    <li><a ui-sref="orders({orderBy: 'OrderDate'})">Orders</a></li>
                     <li><a ui-sref="reports({orderBy: 'OrderDate'})">Orders by Date Range</a></li>
                     <li><a href="/static/index.html#/customers">Customer Lookup</a></li>
-                    <li><a ui-sref="editMovie({id:-1})">New Order</a></li>
+                    <li><a ui-sref="editorder({id:-1})">New Order</a></li>
                 </ul>
             </div>
         </div>

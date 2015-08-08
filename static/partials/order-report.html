@@ -7,10 +7,10 @@
     <td>End Date: <input type="text" id="endDate" ></td>
   </tr>
 </table>
-<div ng-repeat="movie in movies" class="orderList">
-  <h3>{{movie.customer.CompanyName}}, {{movie.customer.CustomerFirstname}}</h3>
-  <p> {{movie.RequiredDate | date:'M/d/yy'}} {{movie.PickUpTime | date:'HH:mm'}}</p>
-  <div ng-repeat="deet in movie.details" class="deet"> 
+<div ng-repeat="order in orders" class="orderList">
+  <h3>{{order.customer.CompanyName}}, {{order.customer.CustomerFirstname}}</h3>
+  <p> {{order.RequiredDate | date:'M/d/yy'}} {{order.PickUpTime | date:'HH:mm'}}</p>
+  <div ng-repeat="deet in order.details" class="deet"> 
     <p>{{ deet.product.ProductName }} {{ deet.subproduct.Flavor }} {{ deet.subproduct.Size }} {{ deet.subproduct.Type }} {{ deet.subproduct.SubProductMemo }}</p>
     <p>{{ deet.MemoOrderDetails }}</p>
   </div>

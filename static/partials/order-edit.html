@@ -1,39 +1,39 @@
-<form class="form-horizontal" role="form" ng-submit="updateMovie()">
+<form class="form-horizontal" role="form" ng-submit="updateorder()">
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer Phone Number</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="movie.CustomerID" class="form-control" id="title" placeholder="Customer Phone Number" ng-change="queryChanged()"/>
+        <input type="text" ng-model="order.CustomerID" class="form-control" id="title" placeholder="Customer Phone Number" ng-change="queryChanged()"/>
     </div>
 </div>
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer First Name</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="movie.customer.CustomerFirstname" class="form-control" id="title" placeholder="First Name"/>
+        <input type="text" ng-model="order.customer.CustomerFirstname" class="form-control" id="title" placeholder="First Name"/>
     </div>
 </div>
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer Last Name</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="movie.customer.CompanyName" class="form-control" id="title" placeholder="Last Name"/>
+        <input type="text" ng-model="order.customer.CompanyName" class="form-control" id="title" placeholder="Last Name"/>
     </div>
 </div>
 <div class="form-group">
     <label for="year" class="col-sm-2 control-label">Due Date</label>
     <div class="col-sm-10">
-        <input type="text" id="pickUpDate" ng-model="movie.RequiredDate" class="form-control" />
+        <input type="text" id="pickUpDate" ng-model="order.RequiredDate" class="form-control" />
     </div>
   </div>
 
 <div class="form-group">
     <label for="plot" class="col-sm-2 control-label">Order Paid</label>
     <div class="col-sm-10">
-        <input type="checkbox" ng-model="movie.OrdPaid" class="form-control" id="orderpaid" placeholder=""/>
+        <input type="checkbox" ng-model="order.OrdPaid" class="form-control" id="orderpaid" placeholder=""/>
     </div>
 </div>
 <div class="form-group">
         <table>
     <tr><td colspan="2"><h3>Details</h3></td></tr>
-    <tr ng-repeat="deet in movie.details">
+    <tr ng-repeat="deet in order.details">
             <td><select ng-model="deet.product.ProductID"><option ng-repeat="prod in products" value="{{ prod.ProductID }}">{{ prod.ProductName }}</option></select></td>
       <td><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></td>
 </tr>

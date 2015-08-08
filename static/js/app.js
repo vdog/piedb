@@ -2,25 +2,25 @@
  * Created by Sandeep on 01/06/14.
  */
 
-angular.module('movieApp',['ui.router','ngResource','movieApp.controllers','movieApp.services']);
+angular.module('orderApp',['ui.router','ngResource','orderApp.controllers','orderApp.services']);
 
-angular.module('movieApp').config(function($stateProvider,$httpProvider){
-    $stateProvider.state('movies',{
+angular.module('orderApp').config(function($stateProvider,$httpProvider){
+    $stateProvider.state('orders',{
         url:'/orders?orderBy&offset',
-        templateUrl:'/static/partials/movies.html',
-        controller:'MovieListController'
-    }).state('viewMovie',{
+        templateUrl:'/static/partials/orders.html',
+        controller:'orderListController'
+    }).state('vieworder',{
        url:'/orders/:id',
-       templateUrl:'/static/partials/movie-view.html',
-       controller:'MovieViewController'
-    }).state('newMovie',{
+       templateUrl:'/static/partials/order-view.html',
+       controller:'orderViewController'
+    }).state('neworder',{
         url:'/orders/new',
-        templateUrl:'/static/partials/movie-add.html',
-        controller:'MovieCreateController'
-    }).state('editMovie',{
+        templateUrl:'/static/partials/order-add.html',
+        controller:'orderCreateController'
+    }).state('editorder',{
         url:'/orders/:id/edit?cID',
-        templateUrl:'/static/partials/movie-edit.html',
-        controller:'MovieEditController'
+        templateUrl:'/static/partials/order-edit.html',
+        controller:'orderEditController'
     }).state('outlook',{
         url:'/7dayoutlook',
         templateUrl:'/static/partials/outlook.html',
@@ -37,9 +37,9 @@ angular.module('movieApp').config(function($stateProvider,$httpProvider){
     }).state('newCustomer',{
     }).state('reports',{
         url:'/reports',
-        templateUrl:'/static/partials/movie-report.html',
+        templateUrl:'/static/partials/order-report.html',
         controller:'OrderReportsController'
     });
 }).run(function($state){
-   $state.go('movies');
+   $state.go('orders');
 });

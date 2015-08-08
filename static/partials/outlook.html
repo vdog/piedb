@@ -1,15 +1,15 @@
-<table class="table movietable">
+<table class="table ordertable">
     <tr>
         <td><h3>Recent Orders</h3></td>
         <td><h3>Due Date</h3></td>
         <td></td>
     </tr>
-    <tr ng-repeat="movie in movies">
-        <td>{{movie.ShipName}}</td>
-        <td>{{movie.RequiredDate | date:'M/d/yy'}}</td>
+    <tr ng-repeat="order in orders">
+        <td>{{order.ShipName}}</td>
+        <td>{{order.RequiredDate | date:'M/d/yy'}}</td>
         <td>
-            <a class="btn btn-primary" ui-sref="viewMovie({id:movie.OrderID})">View</a>
-            <a class="btn btn-primary"  ui-sref="editMovie({id:movie.OrderID})"">Edit</a>
+            <a class="btn btn-primary" ui-sref="vieworder({id:order.OrderID})">View</a>
+            <a class="btn btn-primary"  ui-sref="editorder({id:order.OrderID})"">Edit</a>
         </td>
     </tr>
 </table>

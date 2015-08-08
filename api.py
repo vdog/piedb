@@ -249,7 +249,7 @@ def upsert_order():
 
 @app.before_request
 def before_request():
-  print("before_request handler")
+  #print("before_request handler")
   pass
 
 

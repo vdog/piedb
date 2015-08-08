@@ -97,6 +97,8 @@ class OrderDetails(Base):
   subproduct = relationship('Prod_SubProd')
   OrdDetCategoryID = Column(Integer, primary_key=True)
   UnitPrice = Column(Float, nullable = False, primary_key=True)
+  OrdDetSalesTaxRate = Column(Integer, nullable = False, default=0)
+  Discount = Column(Integer, nullable = False, default=0)
   Quantity = Column(Integer, nullable = False, primary_key=True)
   MemoOrderDetails = Column(String(255), primary_key=True)
 
@@ -105,6 +107,17 @@ class OrderDetails(Base):
     ret['product'] = serialize(self.product)
     ret['sub_product'] = serialize(self.subproduct)
     return ret
+
+  def serialize_in(self, tail):
+    print(json.dumps(tail))
+    if tail['OrderID'] is not None:
+      self.OrderID = tail['OrderID']
+      self.OrdDetProductID = tail['OrdDetProductID']
+      self.OrdDetSubProductID = tail['OrdDetSubProductID']
+      self.Quantity = tail['Quantity']
+      self.UnitPrice = tail['UnitPrice']
+      self.MemoOrderDetails = tail['MemoOrderDetails']
+
 
 class Product(Base):
   __tablename__ = 'Products'
@@ -244,6 +257,14 @@ def upsert_order():
         order.ShipPostalCode = incoming['ShipPostalCode']
         order.OrdPaid = incoming['OrdPaid']
         order.CustomerID = incoming['CustomerID']
+        db.query(OrderDetails).filter(OrderDetails.OrderID == incoming['OrderID']).delete()
+        for tail in incoming['details']:
+          if tail['OrderID'] is None:
+            tail['OrderID'] = order.OrderID
+          detail = OrderDetails()
+          detail.serialize_in(tail)
+          db.add(detail)
+
     db.commit()
     return json.dumps(incoming)
 

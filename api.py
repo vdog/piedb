@@ -100,10 +100,14 @@ def upsert_order():
     incoming = request.get_json()
     print(incoming)
     order = Orders();
+    customer = Customer();
     orderid = incoming.get('OrderID', -1)
+    customerid = incoming.get('CustomerID', None)
     if orderid != -1:
         order = model.db.query(Orders).get(incoming['OrderID'])
         model.db.query(OrderDetails).filter(OrderDetails.OrderID == incoming['OrderID']).delete()
+    if customerid is not None:
+        customer = model.db.query(Customer).get(customerid)
     order.ShipAddress = incoming['ShipAddress']
     order.ShipName = incoming['ShipName']
     order.RequiredDate = dateutil.parser.parse(incoming['RequiredDate'])
@@ -113,6 +117,12 @@ def upsert_order():
     order.ShipPostalCode = incoming['ShipPostalCode']
     order.OrdPaid = incoming['OrdPaid']
     model.db.add(order)
+    if incoming['customer'] is not None:
+        inbound = incoming['customer']
+        customer.CustomerID = inbound['CustomerID']
+        customer.CustomerFirstname = inbound['CustomerFirstname']
+        customer.CompanyName = inbound['CompanyName']
+        model.db.add(customer)
     model.db.commit()
     for tail in incoming['details']:
         print(tail['OrderID'])

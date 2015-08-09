@@ -108,6 +108,8 @@ def upsert_order():
         model.db.query(OrderDetails).filter(OrderDetails.OrderID == incoming['OrderID']).delete()
     if customerid is not None:
         customer = model.db.query(Customer).get(customerid)
+        if customer is None:
+            customer = Customer()
     order.ShipAddress = incoming['ShipAddress']
     order.ShipName = incoming['ShipName']
     order.RequiredDate = dateutil.parser.parse(incoming['RequiredDate'])
@@ -116,10 +118,11 @@ def upsert_order():
     order.ShipRegion = incoming['ShipRegion']
     order.ShipPostalCode = incoming['ShipPostalCode']
     order.OrdPaid = incoming['OrdPaid']
+    order.CustomerID = customerid
     model.db.add(order)
     if incoming['customer'] is not None:
         inbound = incoming['customer']
-        customer.CustomerID = inbound['CustomerID']
+        customer.CustomerID = customerid
         customer.CustomerFirstname = inbound['CustomerFirstname']
         customer.CompanyName = inbound['CompanyName']
         model.db.add(customer)

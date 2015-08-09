@@ -31,7 +31,6 @@ class Orders(model.Base):
 
   def serialize(self):
     ret = model.serialize(self)
-    print(self.employee.__class__)
     if isinstance(self.employee, Employee):
         ret['employee'] = model.serialize(self.employee)
     if isinstance(self.shipper, Shippers):

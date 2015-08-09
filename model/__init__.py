@@ -11,7 +11,6 @@ db = Session(engine)
 
 def date_handler(obj):
     if hasattr(obj, 'isoformat'):
-        print(obj.isoformat())
         return obj.isoformat()
     else:
         return obj

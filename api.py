@@ -111,6 +111,7 @@ def upsert_order():
     order.ShipCity = incoming['ShipCity']
     order.ShipRegion = incoming['ShipRegion']
     order.ShipPostalCode = incoming['ShipPostalCode']
+    order.OrdPaid = incoming['OrdPaid']
     model.db.add(order)
     model.db.commit()
     for tail in incoming['details']:

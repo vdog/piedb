@@ -14,9 +14,12 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="glyphicon glyphicon-th-list"></span>
+                </button>
                 <a class="navbar-brand" href="/static/index.html">Dessert Database</a>
             </div>
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a ui-sref="orders({orderBy: 'OrderDate'})">Orders</a></li>
                     <li><a ui-sref="reports({orderBy: 'OrderDate'})">Orders by Date Range</a></li>
@@ -43,5 +46,6 @@
     <script type="text/javascript" src="/static/lib/angular-resource.min.js"></script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="/static/lib/bootstrap.min.js"></script>
 </body>
 </html>

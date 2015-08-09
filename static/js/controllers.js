@@ -49,7 +49,7 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
         order.get({id:$stateParams.id}, function(data){
                 $scope.order = data;
         });
-      if (typeof($stateParams.cID) !== undefined){
+      if ($stateParams.cID != null){
         Customer.query({search: $stateParams.cID, limit: 1}, function(data){
             $scope.order.customer = data[0];
             $scope.order.CustomerID = $scope.order.customer.CustomerID;

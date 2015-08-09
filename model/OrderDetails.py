@@ -8,8 +8,6 @@ class OrderDetails(model.Base):
   OrderID = Column(Integer, ForeignKey('Orders.OrderID'), primary_key=True)
   OrdDetProductID = Column(Integer, ForeignKey('Products.ProductID'), primary_key=True)
   product = relationship('Product')
-  OrdDetSubProductID = Column(Integer, ForeignKey('Prod_SubProd.SubProductID'), primary_key=True)
-  subproduct = relationship('Prod_SubProd')
   OrdDetCategoryID = Column(Integer, primary_key=True)
   UnitPrice = Column(Float, nullable = False, primary_key=True)
   OrdDetSalesTaxRate = Column(Integer, nullable = False, default=0)
@@ -20,16 +18,13 @@ class OrderDetails(model.Base):
   def serialize(self):
     ret = model.serialize(self)
     ret['product'] = model.serialize(self.product)
-    ret['sub_product'] = model.serialize(self.subproduct)
     return ret
 
   def serialize_in(self, tail):
-    print(json.dumps(tail))
     if tail['OrderID'] is not None:
       self.OrderID = tail['OrderID']
       self.OrdDetProductID = tail['product']['ProductID']
       product = model.db.query(Product).get(self.OrdDetProductID)
-      self.OrdDetSubProductID = tail['OrdDetSubProductID']
       self.Quantity = tail['Quantity']
       self.UnitPrice = product.UnitPrice
       self.MemoOrderDetails = tail['MemoOrderDetails']

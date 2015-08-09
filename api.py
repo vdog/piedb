@@ -99,44 +99,28 @@ def new_detail():
 def upsert_order():
     incoming = request.get_json()
     print(incoming)
+    order = Orders();
     orderid = incoming.get('OrderID', -1)
-    if orderid == -1:
-        order = Orders();
-        order.ShipAddress = incoming['ShipAddress']
-        order.ShipName = incoming['ShipName']
-        order.RequiredDate = dateutil.parser.parse(incoming['RequiredDate'])
-        order.CustomerID = incoming['CustomerID']
-        order.ShipCity = incoming['ShipCity']
-        order.ShipRegion = incoming['ShipRegion']
-        order.ShipPostalCode = incoming['ShipPostalCode']
-        model.db.add(order)
-    else:
+    if orderid != -1:
         order = model.db.query(Orders).get(incoming['OrderID'])
-        print(json.dumps(order.serialize()))
-        #order.ShipCountry = 'UAE'
-        #model.db.commit()
-        #for key in incoming:
-        #    if key != 'details' and key != 'shipper' and key != 'employee':
-        #        print key
-        #        order.key = incoming[key]
-        #        setattr(order, key, incoming[key])
-        #        print getattr(order, key)
-        order.ShipAddress = incoming['ShipAddress']
-        order.ShipName = incoming['ShipName']
-        order.RequiredDate = dateutil.parser.parse(incoming['RequiredDate'])
-        order.ShipCity = incoming['ShipCity']
-        order.ShipRegion = incoming['ShipRegion']
-        order.ShipPostalCode = incoming['ShipPostalCode']
-        order.OrdPaid = incoming['OrdPaid']
-        order.CustomerID = incoming['CustomerID']
         model.db.query(OrderDetails).filter(OrderDetails.OrderID == incoming['OrderID']).delete()
-
+    order.ShipAddress = incoming['ShipAddress']
+    order.ShipName = incoming['ShipName']
+    order.RequiredDate = dateutil.parser.parse(incoming['RequiredDate'])
+    order.CustomerID = incoming['CustomerID']
+    order.ShipCity = incoming['ShipCity']
+    order.ShipRegion = incoming['ShipRegion']
+    order.ShipPostalCode = incoming['ShipPostalCode']
+    model.db.add(order)
+    model.db.commit()
     for tail in incoming['details']:
+        print(tail['OrderID'])
         if tail['OrderID'] is None:
             tail['OrderID'] = order.OrderID
-            detail = OrderDetails()
-            detail.serialize_in(tail)
-            model.db.add(detail)
+        detail = OrderDetails()
+        detail.serialize_in(tail)
+        model.db.add(detail)
+
     model.db.commit()
     return json.dumps(incoming)
 

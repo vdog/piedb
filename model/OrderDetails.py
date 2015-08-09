@@ -1,3 +1,4 @@
+import json
 import model
 from sqlalchemy import (Column, Integer, String, DateTime, Float, ForeignKey, Boolean)
 from sqlalchemy.orm import relationship
@@ -13,7 +14,7 @@ class OrderDetails(model.Base):
   UnitPrice = Column(Float, nullable = False, primary_key=True)
   OrdDetSalesTaxRate = Column(Integer, nullable = False, default=0)
   Discount = Column(Integer, nullable = False, default=0)
-  Quantity = Column(Integer, nullable = False, primary_key=True)
+  Quantity = Column(Integer, nullable = False, primary_key=True, default=1)
   MemoOrderDetails = Column(String(255), primary_key=True)
 
   def serialize(self):
@@ -26,10 +27,11 @@ class OrderDetails(model.Base):
     print(json.dumps(tail))
     if tail['OrderID'] is not None:
       self.OrderID = tail['OrderID']
-      self.OrdDetProductID = tail['OrdDetProductID']
+      self.OrdDetProductID = tail['product']['ProductID']
+      product = model.db.query(Product).get(self.OrdDetProductID)
       self.OrdDetSubProductID = tail['OrdDetSubProductID']
       self.Quantity = tail['Quantity']
-      self.UnitPrice = tail['UnitPrice']
+      self.UnitPrice = product.UnitPrice
       self.MemoOrderDetails = tail['MemoOrderDetails']
 
 
@@ -39,6 +41,8 @@ class Product(model.Base):
   ProductName = Column(String(80), nullable = False)
   QuantityPerUnit = Column(String(40))
   ProdDescription = Column(String(255))
+  UnitPrice = Column(Float, default= 0.0)
+  ProductSalesTaxRate = Column(Float)
 
 class Prod_SubProd(model.Base):
   __tablename__ = 'Prod_SubProd'

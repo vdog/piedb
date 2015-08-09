@@ -13,10 +13,6 @@ angular.module('orderApp').config(function($stateProvider,$httpProvider){
        url:'/orders/:id',
        templateUrl:'/static/partials/order-view.html',
        controller:'orderViewController'
-    }).state('neworder',{
-        url:'/orders/new',
-        templateUrl:'/static/partials/order-add.html',
-        controller:'orderCreateController'
     }).state('editorder',{
         url:'/orders/:id/edit?cID',
         templateUrl:'/static/partials/order-edit.html',

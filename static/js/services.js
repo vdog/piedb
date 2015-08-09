@@ -20,9 +20,6 @@ angular.module('orderApp.services',[]).factory('order',function($resource){
         return $resource('/orderdetail', {},{
 
         });
-}).factory('SubProducts', function($resource){
-        return $resource('/subproducts/:id', {id: '@_id'},{
-        });
 }).service('popupService',function($window){
     this.showPopup=function(message){
         return $window.confirm(message);

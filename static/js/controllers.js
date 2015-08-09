@@ -37,7 +37,7 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
             $state.go('orders');
         });
     }
-}).controller('orderEditController',function($scope,$state,$stateParams,order, Customer, Product, SubProducts, OrderDetail){
+}).controller('orderEditController',function($scope,$state,$stateParams,order, Customer, Product, OrderDetail){
 
     $scope.updateorder=function(){
         $scope.order.$update(function(){
@@ -83,11 +83,6 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
     Product.query({}, function(data){
             //console.log(data)
             $scope.products = data
-            //console.log($scope.products)
-    });
-    SubProducts.query({}, function(data){
-            //console.log(data)
-            $scope.subs = data
             //console.log($scope.products)
     });
 

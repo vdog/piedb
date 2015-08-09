@@ -30,15 +30,13 @@
         <input type="checkbox" ng-model="order.OrdPaid" class="form-control" id="orderpaid" placeholder=""/>
     </div>
 </div>
+<h3>Details</h3>
+<div class="form-group" ng-repeat="deet in order.details">
+  <div class="col-sm-3"><select ng-model="deet.product.ProductID" ng-options="prod.ProductID as prod.ProductName for prod in products"></select></div>
+  <div class="col-sm-9"><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></div>
+</div>
 <div class="form-group">
-        <table>
-    <tr><td colspan="2"><h3>Details</h3></td></tr>
-    <tr ng-repeat="deet in order.details">
-            <td><select ng-model="deet.product.ProductID"><option ng-repeat="prod in products" value="{{ prod.ProductID }}">{{ prod.ProductName }}</option></select></td>
-      <td><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></td>
-</tr>
-</table>
-        <input type="button" class="btn btn-primary" value="Add" ng-click="addDeet();"/>
+  <input type="button" class="btn btn-primary" value="Add" ng-click="addDeet();"/>
 </div>
 
 <div class="form-group">

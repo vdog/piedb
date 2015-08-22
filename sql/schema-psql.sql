@@ -29,15 +29,15 @@ CREATE TABLE "Order Details"
    "OrdDetSubProductID"         bigint, 
    "OrdDetCategoryID"         bigint, 
    "UnitPrice"         money NOT NULL, 
-   "OrdDetSalesTaxRate"         boolean NOT NULL, 
+   "OrdDetSalesTaxRate"         Integer NOT NULL, 
    "Quantity"         Integer NOT NULL, 
-   "Discount"         boolean NOT NULL, 
+   "Discount"         Integer NOT NULL, 
    "MemoOrderDetails"         varchar(255)
 );
 
 CREATE TABLE "Orders"
  (
-   "OrderID"         Integer Primary Key Autoincrement, 
+   "OrderID"         bigserial Primary Key, 
    "CustomerID"         varchar(28), 
    "EmployeeID"         bigint, 
    "OrderDate"         timestamp, 
@@ -51,8 +51,7 @@ CREATE TABLE "Orders"
    "ShipRegion"         varchar(4), 
    "ShipPostalCode"         varchar(10), 
    "ShipCountry"         varchar(30), 
-   "OrdPaid"         Boolean NOT NULL, 
-   "chris test"         varchar(510)
+   "OrdPaid"         Boolean NOT NULL
 );
 
 CREATE TABLE "Prod_SubProd"

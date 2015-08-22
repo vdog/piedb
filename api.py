@@ -3,6 +3,7 @@ from sqlalchemy import (and_, or_, desc, inspect)
 import dateutil.parser
 
 import json
+import os
 
 import model
 from model.Orders import Orders
@@ -146,4 +147,5 @@ def before_request():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0')
+    server_port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=server_port)

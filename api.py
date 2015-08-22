@@ -51,7 +51,12 @@ def get_customers():
     searchTerm = request.args.get('search','')
     offset = request.args.get('offset',0)
     limit = request.args.get('limit',0)
-    customers = model.db.query(Customer).filter(or_(Customer.CustomerID.like('%' + searchTerm + '%'), or_(Customer.CustomerFirstname.like('%' + searchTerm + '%'), Customer.CompanyName.like('%' + searchTerm + '%')))).offset(offset).limit(10)
+    #customers = model.db.query(Customer).filter(or_(Customer.CustomerID.like('%' + searchTerm + '%'), or_(Customer.CustomerFirstname.like('%' + searchTerm + '%'), Customer.CompanyName.like('%' + searchTerm + '%')))).offset(offset).limit(10)
+    try:
+        customers = model.db.query(Customer)
+    except Exception, e:
+        print(e.pgerror)
+
     if limit == 1:
             return json.dumps(serialize(customers[0]))
     return json.dumps([model.serialize(customer) for customer in customers])

@@ -6,7 +6,7 @@ class Customer(model.Base):
     __tablename__ = 'Customers'
     CustomerID = Column(String(28), primary_key=True)
     CompanyName = Column(String(80))
-    CustomerFirstname = Column(String(100))
+    CustomerFirstName = Column(String(100))
     ContactName = Column(String(60))
     ContactTitle = Column(String(60))
     Address = Column(String(120))

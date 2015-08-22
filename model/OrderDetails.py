@@ -4,7 +4,7 @@ from sqlalchemy import (Column, Integer, String, DateTime, Float, ForeignKey, Bo
 from sqlalchemy.orm import relationship
 
 class OrderDetails(model.Base):
-  __tablename__ = 'Order Details'
+  __tablename__ = 'Order_Details'
   OrderID = Column(Integer, ForeignKey('Orders.OrderID'), primary_key=True)
   OrdDetProductID = Column(Integer, ForeignKey('Products.ProductID'), primary_key=True)
   product = relationship('Product')

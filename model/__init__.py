@@ -2,11 +2,12 @@ from sqlalchemy import (create_engine, MetaData, Table, Column, Integer, String,
 from sqlalchemy.orm import mapper, relationship, Session, class_mapper
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
+import os
 
 Base = declarative_base()
 
 # engine, suppose it has two tables 'user' and 'address' set up
-engine = create_engine("sqlite:///hubbard.sql3")
+engine = create_engine(os.getenv('DATABASE_URL','postgres://localhost:5432/hubbard'))
 db = Session(engine)
 
 def date_handler(obj):

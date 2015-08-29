@@ -33,6 +33,10 @@ angular.module('orderApp').config(function($stateProvider,$httpProvider){
         url:'/products',
         templateUrl:'/static/partials/products.html',
         controller:'productListController'
+    }).state('productView',{
+      url:'/products/:id',
+      templateUrl:'/static/partials/product-view.html',
+      controller:'productViewController'
     }).state('newCustomer',{
     }).state('reports',{
         url:'/reports',

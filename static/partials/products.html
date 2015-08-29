@@ -1,6 +1,4 @@
 <div class="form-group row" ng-repeat="product in products">
-  <div class="col-sm-3">{{product.ProductName}}</div>
-    <div class="col-sm-8"><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></div>
-    <div class="col-sm-1"><input type="text" ng-model="deet.Quantity" class="form-control" /></div>
+  <div class="col-sm-12"><a ui-sref="productView({id:product.ProductID})">{{product.ProductName}}</a></div>
 </div>
 

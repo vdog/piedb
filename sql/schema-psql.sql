@@ -56,9 +56,9 @@ CREATE TABLE "Orders"
 
 CREATE TABLE "Prod_SubProd"
  (
-   "SubProductID"         bigint, 
+   "SubProductID"         bigserial Primary Key, 
    "ProductID"         bigint, 
-   "Flavor"         varchar(100), 
+   "Flavor"         varchar(255), 
    "Size"         varchar(20), 
    "Type"         varchar(50), 
    "SubProductMemo"         varchar(255)
@@ -73,7 +73,7 @@ CREATE TABLE "Shippers"
 
 CREATE TABLE "Products"
  (
-   "ProductID"         bigserial, 
+   "ProductID"         bigserial Primary key, 
    "ProductName"         varchar(80) NOT NULL, 
    "CategoryID"         bigint, 
    "QuantityPerUnit"         varchar(40), 

@@ -1,6 +1,3 @@
-/**
- * Created by Sandeep on 01/06/14.
- */
 
 angular.module('orderApp.services',[]).factory('order',function($resource){
     return $resource('/orders/:id',{id:'@_id'},{
@@ -15,7 +12,9 @@ angular.module('orderApp.services',[]).factory('order',function($resource){
         }
     });
 }).factory('Product', function($resource){
-     return $resource('/products', {}, {});
+     return $resource('/products/:id', {id:'@id'}, {});
+}).factory('SubProduct', function($resource){
+  return $resource('/subproducts/:id', {id:'@id'},{});
 }).factory('OrderDetail', function($resource){
         return $resource('/orderdetail', {},{
 

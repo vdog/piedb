@@ -8,6 +8,8 @@ class OrderDetails(model.Base):
   OrderID = Column(Integer, ForeignKey('Orders.OrderID'), primary_key=True)
   OrdDetProductID = Column(Integer, ForeignKey('Products.ProductID'), primary_key=True)
   product = relationship('Product')
+  OrdDetSubProductID = Column(Integer, ForeignKey('Prod_SubProd.SubProductID'), primary_key=True)
+  subproduct = relationship('Prod_SubProd')
   OrdDetCategoryID = Column(Integer, primary_key=True)
   UnitPrice = Column(Float, nullable = False, primary_key=True)
   OrdDetSalesTaxRate = Column(Integer, nullable = False, default=0)
@@ -37,7 +39,16 @@ class Product(model.Base):
   QuantityPerUnit = Column(String(40))
   ProdDescription = Column(String(255))
   UnitPrice = Column(Float, default= 0.0)
+  Discontinued = Column(Boolean, default = False)
   #ProductSalesTaxRate = Column(Float)
+  subproducts = relationship('Prod_SubProd')
+
+  def serialize(self):
+    ret = model.serialize(self)
+    ret['subproducts'] = []
+    for s in self.subproducts:
+      ret['subproducts'].append(model.serialize(s))
+    return ret
 
 class Prod_SubProd(model.Base):
   __tablename__ = 'Prod_SubProd'

@@ -73,13 +73,13 @@ CREATE TABLE "Shippers"
 
 CREATE TABLE "Products"
  (
-   "ProductID"         bigint, 
+   "ProductID"         bigserial, 
    "ProductName"         varchar(80) NOT NULL, 
-   "CategoryID"         bigint NOT NULL, 
+   "CategoryID"         bigint, 
    "QuantityPerUnit"         varchar(40), 
-   "UnitPrice"         money, 
+   "UnitPrice"         numeric, 
    "ProductSalesTaxRate"         boolean, 
-   "Discontinued"         Boolean NOT NULL, 
+   "Discontinued"         Boolean, 
    "LeadTime"         boolean, 
    "ProdDescription"         varchar(255)
 );

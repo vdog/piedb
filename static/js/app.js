@@ -29,7 +29,10 @@ angular.module('orderApp').config(function($stateProvider,$httpProvider){
         url:'/customers/:id',
         templateUrl:'/static/partials/customer-view.html',
         controller:'CustomerViewController'
-    }).state('editCustomer',{
+    }).state('products',{
+        url:'/products',
+        templateUrl:'/static/partials/products.html',
+        controller:'productListController'
     }).state('newCustomer',{
     }).state('reports',{
         url:'/reports',

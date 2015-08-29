@@ -99,6 +99,8 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
 
 }).controller('OutlookListController',function($scope, $state, $stateParams, order){
     $scope.orders=order.query({startDate: '2014-10-09T00:00:00', endDate: '2014-10-17T00:00:00'});
+}).controller('productListController',function($scope,Product){
+  $scope.products = Product.query();
 }).controller('CustomerLookupController',function($scope, $state, $stateParams, Customer){
     $scope.orders = Customer.query({search: $stateParams.search});
     $scope.offset = 0;

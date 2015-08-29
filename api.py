@@ -93,7 +93,7 @@ def get_subproducts():
 
 @app.route("/products")
 def get_products():
-  products = model.db.query(Product)
+  products = model.db.query(Product).order_by(Product.ProductName)
   return json.dumps([model.serialize(product) for product in products])
 
 @app.route("/orderdetail")

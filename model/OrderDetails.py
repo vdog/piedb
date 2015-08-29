@@ -37,7 +37,7 @@ class Product(model.Base):
   QuantityPerUnit = Column(String(40))
   ProdDescription = Column(String(255))
   UnitPrice = Column(Float, default= 0.0)
-  ProductSalesTaxRate = Column(Float)
+  #ProductSalesTaxRate = Column(Float)
 
 class Prod_SubProd(model.Base):
   __tablename__ = 'Prod_SubProd'

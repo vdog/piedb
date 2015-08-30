@@ -85,12 +85,9 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
     }
 
     $scope.updateProduct = function(product){
-             //SubProduct.query({productID: productID}, function(data){
-             // $scope.subs = data
-             //})
-      Product.get({id: product.ProductID},function(data){
-        product.subproducts = data.subproducts;
-      });
+             SubProduct.query({productID: product.ProductID}, function(data){
+              product.subproducts = data;
+             })
     }
 
     Product.query({}, function(data){

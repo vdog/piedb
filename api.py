@@ -1,4 +1,4 @@
-from flask import Flask, request, session, redirect
+from flask import Flask, request, session, redirect, url_for
 from urlparse import urlparse
 from sqlalchemy import (and_, or_, desc, inspect)
 import dateutil.parser
@@ -158,7 +158,7 @@ def before_request():
       print("got [{}]".format(request.headers.get('x-forwarded-proto')))
       if request.headers['x-forwarded-proto'] != 'https':
         print("redirecting to https")
-        redirect(Flask.url_for(request.path, _scheme="https"))
+        redirect(url_for(request.path, _scheme="https"))
 
 
 if __name__ == "__main__":

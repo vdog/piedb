@@ -9,7 +9,7 @@
     </tr>
     <tr>
         <td>Due Date</td>
-        <td>{{order.RequiredDate | date:'M/d/yy'}} {{ order.PickUpTime | date:'HH:mm' }}</td>
+        <td>{{order.RequiredDate | date:'M/d/yy h:mm a' }}</td>
     </tr>
     <tr>
         <td>Paid</td>
@@ -17,7 +17,7 @@
     </tr>
     <tr><td colspan="2"><h3>Details</h3></td></tr>
     <tr ng-repeat="deet in order.details">
-      <td>{{ deet.Quantity }} {{ deet.product.ProductName }} {{ deet.subproduct.Flavor }} {{ deet.subproduct.SubProductMemo }}</td>
+      <td>{{ deet.Quantity }} {{ deet.subproduct.Flavor }} {{ deet.product.ProductName }} {{ deet.subproduct.SubProductMemo }}</td>
         <td>{{ deet.MemoOrderDetails }}</td>
     </tr>
 

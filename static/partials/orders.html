@@ -3,14 +3,12 @@
         <td><h3>Orders</h3></td>
         <td><h3><a ui-sref="orders({orderBy:'OrderDate'})">Order Date</a></h3></td>
         <td><h3><a ui-sref="orders({orderBy: 'RequiredDate'})">PickUp Date</a></h3></td>
-        <td><h3>PickUp Time</h3></td>
         <td></td>
     </tr>
     <tr ng-repeat="order in orders">
           <td>{{order.customer.CompanyName}}, {{order.customer.CustomerFirstName}}</td>
           <td>{{order.OrderDate | date:'M/d/yy'}}</td>
-          <td>{{order.RequiredDate | date:'M/d/yy'}}</td>
-          <td>{{order.RequiredDate | date:'HH:mm'}}</td>
+          <td>{{order.RequiredDate | date:'M/d/yy h:mm a'}}</td>
           <td>
             <a class="btn btn-primary" ui-sref="vieworder({id:order.OrderID})">View</a>
             <a class="btn btn-primary"  ui-sref="editorder({id:order.OrderID})"">Edit</a>

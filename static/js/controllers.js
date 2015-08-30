@@ -58,13 +58,15 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
         });
 
       }
-        $( "#pickUpDate" ).datepicker({
+        /*$( "#pickUpDate" ).datepicker({
           dateFormat: 'yy-mm-ddT00:00:00',
           minDate: new Date(),
+          altFormat: "yy-mm-dd",
           onClose:function(){
             $scope.order.RequiredDate = this.value;
           }
-        });
+        });*/
+        $scope.today = Date.now();
         console.log('loadorder');
     };
 

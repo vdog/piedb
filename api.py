@@ -158,7 +158,7 @@ def before_request():
       print("got [{}]".format(request.headers.get('x-forwarded-proto')))
       if request.headers['x-forwarded-proto'] != 'https':
         print("redirecting to https")
-        redirect(url_for(request.path, _scheme="https"))
+        redirect(Flask.url_for(request.path, _scheme="https"))
 
 
 if __name__ == "__main__":

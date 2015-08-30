@@ -158,7 +158,8 @@ def before_request():
       print("got [{}]".format(request.headers.get('x-forwarded-proto')))
       if request.headers['x-forwarded-proto'] != 'https':
         print("redirecting to https")
-        redirect(url_for(request.path, _scheme="https", _external=True))
+        ssl_url = request.url.replace('http','https')
+        redirect(ssl_url)
 
 
 if __name__ == "__main__":

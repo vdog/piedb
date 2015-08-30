@@ -5,17 +5,18 @@ from sqlalchemy.orm import relationship
 
 class OrderDetails(model.Base):
   __tablename__ = 'Order Details'
-  OrderID = Column(Integer, ForeignKey('Orders.OrderID'), primary_key=True)
-  OrdDetProductID = Column(Integer, ForeignKey('Products.ProductID'), primary_key=True)
+  DetailID = Column(Integer, primary_key = True)
+  OrderID = Column(Integer, ForeignKey('Orders.OrderID'))
+  OrdDetProductID = Column(Integer, ForeignKey('Products.ProductID'))
   product = relationship('Product')
-  OrdDetSubProductID = Column(Integer, ForeignKey('Prod_SubProd.SubProductID'), primary_key=True)
+  OrdDetSubProductID = Column(Integer, ForeignKey('Prod_SubProd.SubProductID'))
   subproduct = relationship('Prod_SubProd')
-  OrdDetCategoryID = Column(Integer, primary_key=True)
-  UnitPrice = Column(Float, nullable = False, primary_key=True)
+  OrdDetCategoryID = Column(Integer)
+  UnitPrice = Column(Float )
   OrdDetSalesTaxRate = Column(Integer, nullable = False, default=0)
   Discount = Column(Integer, nullable = False, default=0)
-  Quantity = Column(Integer, nullable = False, primary_key=True, default=1)
-  MemoOrderDetails = Column(String(255), primary_key=True)
+  Quantity = Column(Integer, nullable = False, default=1)
+  MemoOrderDetails = Column(String(255))
 
   def serialize(self):
     ret = model.serialize(self)

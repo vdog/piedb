@@ -24,11 +24,12 @@ CREATE TABLE "Employees"
 
 CREATE TABLE "Order Details"
  (
+   "DetailID"       bigserial Primary Key,
    "OrderID"         bigint NOT NULL, 
    "OrdDetProductID"         bigint, 
    "OrdDetSubProductID"         bigint, 
    "OrdDetCategoryID"         bigint, 
-   "UnitPrice"         money NOT NULL, 
+   "UnitPrice"         numeric, 
    "OrdDetSalesTaxRate"         Integer NOT NULL, 
    "Quantity"         Integer NOT NULL, 
    "Discount"         Integer NOT NULL, 

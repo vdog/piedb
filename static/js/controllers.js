@@ -93,6 +93,10 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
              })
     }
 
+    $scope.deleteDetail = function ( idx ) {
+        $scope.order.details.splice(idx, 1);
+    };
+
     Product.query({}, function(data){
             //console.log(data)
             $scope.products = data

@@ -7,7 +7,7 @@
         <td></td>
     </tr>
     <tr ng-repeat="order in orders">
-          <td>{{order.customer.CompanyName}}, {{order.customer.CustomerFirstname}}</td>
+          <td>{{order.customer.CompanyName}}, {{order.customer.CustomerFirstName}}</td>
           <td>{{order.OrderDate | date:'M/d/yy'}}</td>
           <td>{{order.RequiredDate | date:'M/d/yy'}}</td>
           <td>{{order.PickUpTime | date:'HH:mm'}}</td>

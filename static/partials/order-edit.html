@@ -2,25 +2,25 @@
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer Phone Number</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="order.CustomerID" class="form-control" id="title" placeholder="Customer Phone Number" />
+        <input type="text" ng-model="order.CustomerID" class="form-control" id="title" placeholder="Customer Phone Number" ng-required="true" />
     </div>
 </div>
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer First Name</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="order.customer.CustomerFirstname" class="form-control" id="title" placeholder="First Name"/>
+        <input type="text" ng-model="order.customer.CustomerFirstname" class="form-control" ng-required="true" id="title" placeholder="First Name"/>
     </div>
 </div>
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Customer Last Name</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="order.customer.CompanyName" class="form-control" id="title" placeholder="Last Name"/>
+        <input type="text" ng-model="order.customer.CompanyName" class="form-control" id="title" placeholder="Last Name" ng-required="true"/>
     </div>
 </div>
 <div class="form-group">
     <label for="year" class="col-sm-2 control-label">Due Date</label>
     <div class="col-sm-10">
-        <input type="text" id="pickUpDate" ng-model="order.RequiredDate" class="form-control" />
+        <input type="text" id="pickUpDate" ng-model="order.RequiredDate" class="form-control" ng-required="true" />
     </div>
   </div>
 
@@ -38,8 +38,8 @@
 </div>
 <div class="form-group" ng-repeat="deet in order.details">
   <div class="col-sm-3"><select ng-model="deet.product.ProductID" ng-options="prod.ProductID as prod.ProductName for prod in products" ng-change="updateProduct(deet.product)" ></select><select ng-model="deet.subproduct.SubProductID" ng-options="sub.SubProductID as sub.Flavor for sub in deet.product.subproducts"></select></div>
-  <div class="col-sm-8"><input type="text" ng-model="deet.MemoOrderDetails" class="form-control"></div>
-  <div class="col-sm-1"><input type="text" ng-model="deet.Quantity" class="form-control" /></div>
+  <div class="col-sm-8"><textarea ng-model="deet.MemoOrderDetails" class="form-control" ng-maxlength="255"></textarea></div>
+  <div class="col-sm-1"><input type="text" ng-model="deet.Quantity" class="form-control" ng-required="true" /></div>
 </div>
 <div class="form-group">
   <input type="button" class="btn btn-primary" value="Add" ng-click="addDeet();"/>

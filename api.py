@@ -1,4 +1,5 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, redirect
+from urlparse import urlparse
 from sqlalchemy import (and_, or_, desc, inspect)
 import dateutil.parser
 
@@ -155,6 +156,9 @@ def before_request():
   #print("before_request handler")
   if request.headers.get('x-forwarded-proto', None):
       print("got [{}]".format(request.headers.get('x-forwarded-proto')))
+      if request.headers['x-forwarded-proto'] != 'https':
+        url_pieces = urlparse(request.url)
+        redirect("https://{}/{}{}".format(url_pieces.hostname, request.script_root, request.path))
   pass
 
 

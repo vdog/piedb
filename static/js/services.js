@@ -12,9 +12,13 @@ angular.module('orderApp.services',[]).factory('order',function($resource){
         }
     });
 }).factory('Product', function($resource){
-     return $resource('/products/:id', {id:'@id'}, {});
+     return $resource('/products/:id', {id:'@_id'}, {
+        update: {
+          method: 'PUT'
+        }
+     });
 }).factory('SubProduct', function($resource){
-  return $resource('/subproducts/:id', {id:'@id'},{});
+  return $resource('/subproducts/:id', {id:'@_id'},{});
 }).factory('OrderDetail', function($resource){
         return $resource('/orderdetail', {},{
 

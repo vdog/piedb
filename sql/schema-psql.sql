@@ -54,6 +54,15 @@ CREATE TABLE "Orders"
    "OrdPaid"         Boolean NOT NULL
 );
 
+CREATE TABLE "Sizes"
+ (
+   "SizeID"         bigserial Primary Key, 
+   "ProductID"         bigint, 
+   "Title"         varchar(255), 
+   "Memo"         varchar(255)
+);
+
+
 CREATE TABLE "Prod_SubProd"
  (
    "SubProductID"         bigserial Primary Key, 

@@ -37,7 +37,7 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
             $state.go('orders');
         });
     }
-}).controller('orderEditController',function($scope,$state,$stateParams,order, Customer, Product, OrderDetail){
+}).controller('orderEditController',function($scope,$state,$stateParams,order, Customer, Product, OrderDetail, SubProduct){
 
     $scope.updateorder=function(){
         $scope.order.$update(function(){
@@ -76,6 +76,7 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
       });
     }
 
+
     $scope.addDeet = function(){
             OrderDetail.get({}, function(data){
               $scope.order.details.push(data);
@@ -83,16 +84,23 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
 
     }
 
-    $scope.updateProduct = function(id){
-             SubProducts.query({productID: id}, function(data){
-              $scope.subs = data
-             })
+    $scope.updateProduct = function(product){
+             //SubProduct.query({productID: productID}, function(data){
+             // $scope.subs = data
+             //})
+      Product.get({id: product.ProductID},function(data){
+        product.subproducts = data.subproducts;
+      });
     }
 
     Product.query({}, function(data){
             //console.log(data)
             $scope.products = data
             //console.log($scope.products)
+    });
+
+    SubProduct.query({}, function(data){
+      $scope.subs = data
     });
 
     $scope.loadorder();

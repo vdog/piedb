@@ -12,6 +12,7 @@ from model.OrderDetails import OrderDetails
 from model.OrderDetails import Product
 from model.OrderDetails import Employee
 from model.Shippers import Shippers
+from model.OrderDetails import Prod_SubProd
 
 app = Flask(__name__)
 
@@ -94,7 +95,7 @@ def get_subproducts():
 @app.route("/products")
 def get_products():
   products = model.db.query(Product).filter(Product.Discontinued == False).order_by(Product.ProductName)
-  return json.dumps([model.serialize(product) for product in products])
+  return json.dumps([product.serialize() for product in products])
 
 @app.route("/products/<int:productID>")
 def get_product(productID):

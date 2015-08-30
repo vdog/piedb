@@ -1,5 +1,4 @@
-from flask import Flask, request, session, redirect, url_for
-from urlparse import urlparse
+from flask import Flask, request, session, redirect
 from sqlalchemy import (and_, or_, desc, inspect)
 import dateutil.parser
 
@@ -160,7 +159,7 @@ def before_request():
         print("redirecting to https")
         ssl_url = request.url.replace('http','https')
         print(ssl_url)
-        redirect(ssl_url)
+        return redirect(ssl_url)
 
 
 if __name__ == "__main__":

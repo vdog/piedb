@@ -135,7 +135,7 @@ def upsert_order():
     if incoming['customer'] is not None:
         inbound = incoming['customer']
         customer.CustomerID = customerid
-        customer.CustomerFirstname = inbound['CustomerFirstname']
+        customer.CustomerFirstName = inbound['CustomerFirstName']
         customer.CompanyName = inbound['CompanyName']
         model.db.add(customer)
     model.db.commit()

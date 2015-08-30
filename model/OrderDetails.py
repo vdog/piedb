@@ -20,13 +20,15 @@ class OrderDetails(model.Base):
 
   def serialize(self):
     ret = model.serialize(self)
-    ret['product'] = model.serialize(self.product)
+    ret['product'] = self.product.serialize()
+    ret['subproduct'] = model.serialize(self.subproduct)
     return ret
 
   def serialize_in(self, tail):
     if tail['OrderID'] is not None:
       self.OrderID = tail['OrderID']
       self.OrdDetProductID = tail['product']['ProductID']
+      self.OrdDetSubProductID = tail['subproduct']['SubProductID']
       product = model.db.query(Product).get(self.OrdDetProductID)
       self.Quantity = tail['Quantity']
       self.UnitPrice = product.UnitPrice

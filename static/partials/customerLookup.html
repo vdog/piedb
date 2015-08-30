@@ -7,7 +7,7 @@ Search for Phone number, First Name, or Last Name: <input ng-model='search' ng-c
         <td></td>
     </tr>
     <tr ng-repeat="order in orders">
-        <td>{{order.CustomerFirstname}}</td>
+        <td>{{order.CustomerFirstName}}</td>
         <td>{{order.CompanyName}}</td>
         <td>{{order.CustomerID}}</td>
         <td><a class='btn btn-primary' ui-sref="viewCustomer({id:order.CustomerID})">Orders</a></td>

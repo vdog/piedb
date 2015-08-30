@@ -75,6 +75,7 @@ def get_order(orderID):
 @app.route("/orders/-1")
 def get_new_order():
     order = Orders();
+    order.RequiredDate = None
     order.OrderID = -1
     return json.dumps(order.serialize())
 

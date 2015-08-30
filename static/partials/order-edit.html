@@ -39,13 +39,13 @@
 <h3>Details</h3>
 <div class="form-group"> 
   <div class="col-sm-3">Item</div>
-  <div class="col-sm-7">Notes</div>
   <div class="col-sm-1">Quantity</div>
+  <div class="col-sm-7">Notes</div>
 </div>
 <div class="form-group" ng-repeat="deet in order.details">
   <div class="col-sm-3"><select ng-model="deet.product.ProductID" ng-options="prod.ProductID as prod.ProductName for prod in products" ng-change="updateProduct(deet.product)" ></select><select ng-model="deet.subproduct.SubProductID" ng-options="sub.SubProductID as sub.Flavor for sub in deet.product.subproducts"></select></div>
-  <div class="col-sm-7"><textarea ng-model="deet.MemoOrderDetails" class="form-control" ng-maxlength="255"></textarea></div>
   <div class="col-sm-1"><input type="text" ng-model="deet.Quantity" class="form-control" ng-required="true" /></div>
+  <div class="col-sm-7"><textarea ng-model="deet.MemoOrderDetails" class="form-control" ng-maxlength="255"></textarea></div>
   <div class="col-sm-1"><button ng-click="deleteDetail($index)"><span class="glyphicon glyphicon-remove" /></button></div>
 </div>
 <div class="form-group">

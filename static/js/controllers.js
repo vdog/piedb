@@ -40,6 +40,7 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
 }).controller('orderEditController',function($scope,$state,$stateParams,order, Customer, Product, OrderDetail, SubProduct){
 
     $scope.updateorder=function(){
+        $scope.order.RequiredDate = new Date($scope.requiredDate.getTime() - $scope.requiredDate.getTimezoneOffset() * 60000).toISOString().replace('Z',''); 
         $scope.order.$update(function(){
             $state.go('orders');
         });
@@ -48,6 +49,8 @@ angular.module('orderApp.controllers',[]).controller('orderListController',funct
     $scope.loadorder=function(){
         order.get({id:$stateParams.id}, function(data){
                 $scope.order = data;
+                gmtDate = new Date($scope.order.RequiredDate);
+                $scope.requiredDate = new Date(gmtDate.getTime() + gmtDate.getTimezoneOffset() * 60000) 
         });
       if ($stateParams.cID != null){
         Customer.query({search: $stateParams.cID, limit: 1}, function(data){

@@ -153,6 +153,8 @@ def upsert_order():
 @app.before_request
 def before_request():
   #print("before_request handler")
+  if request.headers.get('x-forwarded-proto', None):
+      print("Running on heroku")
   pass
 
 

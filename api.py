@@ -52,7 +52,7 @@ def get_customers():
     searchTerm = request.args.get('search','')
     offset = request.args.get('offset',0)
     limit = request.args.get('limit',0)
-    customers = model.db.query(Customer).filter(or_(Customer.CustomerID.like('%' + searchTerm + '%'), or_(Customer.CustomerFirstName.like('%' + searchTerm + '%'), Customer.CompanyName.like('%' + searchTerm + '%')))).offset(offset).limit(10)
+    customers = model.db.query(Customer).filter(or_(Customer.CustomerID.like('%' + searchTerm + '%'), or_(Customer.CustomerFirstName.like('%' + searchTerm + '%'), Customer.CompanyName.like('%' + searchTerm + '%')))).order_by(Customer.CompanyName,Customer.CustomerFirstName,Customer.CustomerID).offset(offset).limit(10)
     #try:
     #    customers = model.db.query(Customer)
     #except Exception, e:

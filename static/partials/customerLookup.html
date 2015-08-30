@@ -5,12 +5,14 @@ Search for Phone number, First Name, or Last Name: <input ng-model='search' ng-c
         <td><h3>Last Name</h3></td>
         <td><h3>Phone Number</h3></td>
         <td></td>
+        <td></td>
     </tr>
     <tr ng-repeat="order in orders">
         <td>{{order.CustomerFirstName}}</td>
         <td>{{order.CompanyName}}</td>
         <td>{{order.CustomerID}}</td>
         <td><a class='btn btn-primary' ui-sref="viewCustomer({id:order.CustomerID})">Orders</a></td>
+        <td><a class='btn btn-primary' ui-sref='editorder({id:-1,cID:order.CustomerID})'>New Order</a></td>
     </tr>
 </table>
 <a class='btn btn-primary' ng-click='prevPage()'>&lt;&lt;Previous Page</a>

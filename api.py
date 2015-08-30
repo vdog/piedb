@@ -1,4 +1,4 @@
-from flask import Flask, request, session, redirect
+from flask import Flask, request, session, redirect, Response
 from sqlalchemy import (and_, or_, desc, inspect)
 import dateutil.parser
 
@@ -150,16 +150,28 @@ def upsert_order():
     model.db.commit()
     return json.dumps(incoming)
 
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'admin' and password == 'secret'
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+        'Could not verify your access level for that URL.\n'
+        'You have to login with proper credentials', 401,
+        {'WWW-Authenticate': 'Basic realm="Dessert Database'})
+
 @app.before_request
 def before_request():
-  #print("before_request handler")
   if request.headers.get('x-forwarded-proto', None):
-      print("got [{}]".format(request.headers.get('x-forwarded-proto')))
       if request.headers['x-forwarded-proto'] != 'https':
-        print("redirecting to https")
         ssl_url = request.url.replace('http','https')
-        print(ssl_url)
         return redirect(ssl_url)
+  auth = request.authorization
+  if not auth or not check_auth(auth.username, auth.password):
+    return authenticate()
 
 
 if __name__ == "__main__":
